@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    maven {
+        url "http://localhost:9090/releases"
+        allowInsecureProtocol = true
+    }
+}
+
+dependencies {
+    implementation group: 'org.example', name: 'helpreposilite', version: '1.0.9-SNAPSHOT'
+//    implementation group: 'com.tigerit.logger', name: 'library', version: '0.1.1'
+}
+
+publishing {
+
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url "http://localhost:9090/releases"
+            allowInsecureProtocol = true
+            credentials {
+                username = "admin"
+                password = "g8JSC0s4xFG1V3nnOs6YXT8nn+FH9sww44AWRuarwA/CBgy+uG2nVcPYGC37cL4u"
+            }
+        }
+    }
+}
+
